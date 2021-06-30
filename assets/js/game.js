@@ -5,13 +5,13 @@
 // "LOSE" - Player robot's health is zero or less
 
 //function to generate a random numeric value
-var randomNumber = function(min, max) {
+var randomNumber = function (min, max) {
   var value = Math.floor(Math.random() * (max - min + 1) + min);
   return value;
 };
 
 //fight function (now with parameter for enemy's name)
-var fight = function(enemy) {
+var fight = function (enemy) {
   // repeat and execute as long as the enemy-robot is alive
   while (enemy.health > 0 && playerInfo.health > 0) {
     // Ask players to fight or skip
@@ -70,7 +70,7 @@ var fight = function(enemy) {
 };
 
 //function to start a new game
-var startGame = function() {
+var startGame = function () {
   // reset player status
   playerInfo.reset();
 
@@ -106,7 +106,7 @@ var startGame = function() {
 };
 
 //function to end the entire game
-var endGame = function() {
+var endGame = function () {
   window.alert("The game has now ended. Let's see how you did!");
 
   // if player is still alive, player wins!
@@ -126,7 +126,7 @@ var endGame = function() {
   }
 };
 //go to shop between battles function
-var shop = function() {
+var shop = function () {
   var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.")
   //use switch case to caryy out action
   switch (shopOptionPrompt) {
@@ -153,18 +153,27 @@ var shop = function() {
   }
 };
 
+var getPlayerName = function () {
+  var name = "";
+  while (name === "" || name === null) {
+    name = window.prompt("What is your robot's name?");
+  }
+    console.log("Your robot's name is " + name);
+    return name;
+ 
+};
 
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 100,
-  reset: function() {
+  reset: function () {
     this.health = 100;
     this.attack = 10;
     this.money = 100;
   },
-  refillHealth: function() {
+  refillHealth: function () {
     if (this.money >= 7) {
       window.alert("Refilling player's health by 20 for 7 dollars.");
       this.health += 20;
@@ -173,7 +182,7 @@ var playerInfo = {
       window.alert("You don't have enough money!");
     }
   },
-  upgradeAttack: function() {
+  upgradeAttack: function () {
     if (this.money >= 7) {
       window.alert("Upgrading player's attack by 6 for 7 dollars");
       this.attack += 6;
